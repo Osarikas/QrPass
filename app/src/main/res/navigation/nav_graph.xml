@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="ru.myitschool.work.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="ru.myitschool.work.ui.main.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_qrScanFragment"
+            app:destination="@id/qrScanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/qrScanFragment"
+        android:name="ru.myitschool.work.ui.qr.scan.QrScanFragment"
+        android:label="QrScanFragment"
+        tools:layout="@layout/fragment_qr_scan">
+        <action
+            android:id="@+id/action_qrScanFragment_to_qrResultFragment"
+            app:destination="@id/qrResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/qrResultFragment"
+        android:name="ru.myitschool.work.ui.qr.result.QrResultFragment"
+        android:label="QrResultFragment"
+        tools:layout="@layout/fragment_qr_result">
+        <action
+            android:id="@+id/action_qrResultFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>

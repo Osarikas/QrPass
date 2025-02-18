@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">NTO Pass</string>
+    <string name="login_title">Логин</string>
+    <string name="username_hint">Введите ваше имя пользователя</string>
+    <string name="login_btn">Логин</string>
+    <string name="login_error">Ошибка логина</string>
+
+    <string name="main_title">Главная страница</string>
+    <string name="logout_btn">Выйти из аккаунта</string>
+    <string name="refresh_btn">Перезагрузить</string>
+    <string name="scan_btn">Сканировать</string>
+    <string name="main_error">Ошибка</string>
+
+    <string name="result_success_text">Успешно</string>
+    <string name="result_fail_text">Что-то пошло не так</string>
+    <string name="result_null_text">Вход был отменён</string>
+    <string name="close_btn">Закрыть</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+
+</resources>

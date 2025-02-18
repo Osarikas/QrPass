@@ -1,0 +1,26 @@
+name: Merge core/template-android-project to this repo
+
+env:
+  CORE_REPO: "https://git.sicampus.ru/core/template-android-project.git"
+  TOKEN: ${{ secrets.PUSH_TOKEN }}
+
+run-name: Merge core/template-android-project to ${{ gitea.repository }}
+on:
+  schedule:
+    - cron: '@daily'
+
+
+jobs:
+  merge-if-needed:
+    if: ${{ !contains(gitea.repository, 'core/template-android-project' ) }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Merge core/template-android-project to ${{ gitea.repository }}"
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Sync repos
+        uses: Vova-SH/sync-upstream-repo@1.0.5
+        with:
+          upstream_repo: ${{ env.CORE_REPO }}
+          token: ${{ env.TOKEN }}
+          spawn_logs: false

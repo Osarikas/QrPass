@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NTO Pass</string>
+    <string name="login_title">Login</string>
+    <string name="username_hint">Enter your username</string>
+    <string name="login_btn">Login</string>
+    <string name="login_error">Login Error</string>
+    <string name="main_title">Main page</string>
+    <string name="logout_btn">Logout</string>
+    <string name="refresh_btn">Refresh</string>
+    <string name="scan_btn">Scan</string>
+    <string name="main_error">Error</string>
+    <string name="result_success_text">Success</string>
+    <string name="result_fail_text">Something wrong</string>
+    <string name="close_btn">Close</string>
+    <string name="close_button">Close</string>
+    <string name="result_null_text">Operation was cancelled</string>
+</resources>
