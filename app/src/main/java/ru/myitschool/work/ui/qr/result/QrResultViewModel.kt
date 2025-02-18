@@ -23,9 +23,9 @@ class QrResultViewModel(
     val state: StateFlow<State> = _state.asStateFlow()
 
     sealed class State{
-        object Success : State()
-        object Loading : State()
-        object Error : State()
+        data object Success : State()
+        data object Loading : State()
+        data object Error : State()
     }
     fun openDoor(openEntity: OpenEntity){
         _state.value = State.Loading

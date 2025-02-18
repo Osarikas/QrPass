@@ -42,12 +42,27 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
                 with(binding) {
-                    error.visibility = if (state is LoginViewModel.State.Error) View.VISIBLE else View.GONE
-                    username.isEnabled = state !is LoginViewModel.State.Loading
-
-                    if (state is LoginViewModel.State.Success) {
-                        findNavController().navigate(R.id.mainFragment)
+                    when(state){
+                        is LoginViewModel.State.Error -> {
+                            error.visibility = View.VISIBLE
+                            loading.visibility = View.GONE
+                            username.isEnabled = true
+                        }
+                        is LoginViewModel.State.Idle -> {
+                            loading.visibility = View.GONE
+                            error.visibility = View.GONE
+                            username.isEnabled = true
+                        }
+                        is LoginViewModel.State.Loading -> {
+                            loading.visibility = View.VISIBLE
+                            error.visibility = View.GONE
+                            username.isEnabled = false
+                        }
+                        is LoginViewModel.State.Success -> {
+                            findNavController().navigate(R.id.mainFragment)
+                        }
                     }
+
                 }
             }
         }

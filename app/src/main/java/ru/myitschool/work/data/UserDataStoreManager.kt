@@ -12,6 +12,7 @@ class UserDataStoreManager(private val context: Context) {
 
     companion object {
         private val USERNAME_KEY = stringPreferencesKey("username")
+        private val ROLE_KEY = stringPreferencesKey("role")
 
         fun getInstance(context: Context): UserDataStoreManager {
             return UserDataStoreManager(context.applicationContext)
@@ -21,12 +22,19 @@ class UserDataStoreManager(private val context: Context) {
     val usernameFlow: Flow<String> = context.applicationContext.dataStore.data.map { prefs ->
         prefs[USERNAME_KEY] ?: ""
     }
+    val roleFlow: Flow<String> = context.applicationContext.dataStore.data.map{ prefs ->
+        prefs[ROLE_KEY] ?: ""
+    }
     suspend fun saveUsername(username: String) {
         context.dataStore.edit { prefs ->
             prefs[USERNAME_KEY] = username
         }
     }
-
+    suspend fun saveRole(role: String){
+        context.dataStore.edit { prefs ->
+            prefs[ROLE_KEY] = role
+        }
+    }
     suspend fun clearUsername() {
         context.applicationContext.dataStore.edit { it.clear() }
     }
