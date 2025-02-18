@@ -123,6 +123,11 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/refresh_btn"
             android:textColor="@color/white" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
