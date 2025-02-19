@@ -1,4 +1,4 @@
-package ru.myitschool.work.domain.visitsList
+package ru.myitschool.work.domain.employeeEntrance.employeeEntrances
 
 class GetEmployeeEntranceListUseCase(
     private val repo: EmployeeEntranceListRepo

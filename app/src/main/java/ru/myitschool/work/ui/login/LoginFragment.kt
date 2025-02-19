@@ -36,6 +36,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
         }
         binding.username.addTextChangedListener(textWatcher)
+        binding.password.addTextChangedListener(textWatcher)
+
         binding.loginBtn.isEnabled = false
         binding.loginBtn.setOnClickListener{
             viewModel.login(binding.username.text.toString(), binding.password.text.toString())

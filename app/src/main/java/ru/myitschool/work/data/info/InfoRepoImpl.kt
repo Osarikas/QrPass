@@ -11,7 +11,7 @@ class InfoRepoImpl(
             UserEntity(
                 id = dto.id ?: 0,
                 login = dto.login ?: "",
-                name = dto.login ?: "",
+                name = dto.name ?: "",
                 authority = dto.authority ?: "",
                 photoUrl = dto.photoUrl,
                 position = dto.position ?: ""

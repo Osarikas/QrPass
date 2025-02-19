@@ -6,7 +6,7 @@ import java.util.Locale
 
 fun dateConverter(date: Date?) : String {
     if (date != null) {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         println(dateFormat.format(date).toString())
         return dateFormat.format(date).toString()
 

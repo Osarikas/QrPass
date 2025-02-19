@@ -6,8 +6,9 @@ import ru.myitschool.work.utils.DateSerializer
 import java.util.Date
 
 @Serializable
-data class VisitDTO(
-    @SerialName("scanTime") @Serializable(with = DateSerializer::class) val scanTime : Date?,
-    @SerialName("readerId") val readerName: String?,
+data class EmployeeEntranceDTO(
+    @SerialName("id") val id : Int?,
+    @SerialName("entryTime") @Serializable(with = DateSerializer::class) val scanTime : Date?,
+    @SerialName("readerName") val readerName: String?,
     @SerialName("type") val type: String?
 )

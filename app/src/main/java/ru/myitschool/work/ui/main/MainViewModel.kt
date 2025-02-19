@@ -17,13 +17,11 @@ import kotlinx.coroutines.withContext
 import ru.myitschool.work.data.UserDataStoreManager
 import ru.myitschool.work.data.info.InfoNetworkDataSource
 import ru.myitschool.work.data.info.InfoRepoImpl
-import ru.myitschool.work.data.visitsList.employeeEntrances.EmployeeEntranceListNetworkDataSource
-import ru.myitschool.work.data.visitsList.employeeEntrances.EmployeeEntranceListRepoImpl
+import ru.myitschool.work.data.entrance.employeeEntrances.EmployeeEntranceListNetworkDataSource
+import ru.myitschool.work.data.entrance.employeeEntrances.EmployeeEntranceListRepoImpl
 import ru.myitschool.work.domain.info.GetInfoUseCase
-import ru.myitschool.work.domain.visitsList.GetEmployeeEntranceListUseCase
+import ru.myitschool.work.domain.employeeEntrance.employeeEntrances.GetEmployeeEntranceListUseCase
 import ru.myitschool.work.utils.UserState
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 class MainViewModel(
     private val infoUseCase: GetInfoUseCase,
@@ -41,31 +39,30 @@ class MainViewModel(
         println("Creating PagingSource")
         EmployeeEntranceListPagingSource(listUseCase::invoke)
     }.flow.cachedIn(viewModelScope)
+    init {
+        viewModelScope.launch {
+            listState.collect { pagingData ->
+                if (pagingData.toString().isEmpty()) {
+                    println("No data in paging data.")
+                } else {
+                    println("Data received: $pagingData")
+                }
+            }
+        }
+    }
 
     private val _userState = MutableStateFlow<UserState>(UserState.Loading)
     val userState: StateFlow<UserState> get() = _userState
 
     private val dataStoreManager = UserDataStoreManager(application)
 
-    fun formatDate(date: String): String {
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-        val outputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
-        return try {
-            val formattedDate = inputFormat.parse(date)
-            if (formattedDate != null) {
-                outputFormat.format(formattedDate)
-            } else{}
-        } catch (_: Exception) {
-            "Invalid Date"
-        }.toString()
-    }
-
     fun getUserData() {
         _userState.value = UserState.Loading
         viewModelScope.launch {
             infoUseCase.invoke().fold(
                 onSuccess = { data -> _userState.value = UserState.Success(data) },
-                onFailure = { _userState.value = UserState.Error }
+                onFailure = { e -> _userState.value = UserState.Error
+                println(e)}
             )
         }
     }

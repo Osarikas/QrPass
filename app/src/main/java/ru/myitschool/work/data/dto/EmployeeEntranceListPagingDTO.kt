@@ -4,6 +4,6 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class VisitListPagingDTO(
-    @SerialName("content") val content : List<VisitDTO>?
+data class EmployeeEntranceListPagingDTO(
+    @SerialName("content") val content : List<EmployeeEntranceDTO>?
 )

@@ -1,4 +1,4 @@
-package ru.myitschool.work.domain.visitsList
+package ru.myitschool.work.domain.employeeEntrance.employeeEntrances
 
 import ru.myitschool.work.domain.entities.EmployeeEntranceEntity
 

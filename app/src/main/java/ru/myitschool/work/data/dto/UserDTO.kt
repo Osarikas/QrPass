@@ -9,7 +9,7 @@ data class UserDTO(
     @SerialName("login") val login: String?,
     @SerialName("name") val name: String?,
     @SerialName("authority") val authority : String?,
-    @SerialName("photo") val photoUrl: String?,
+    @SerialName("photoUrl") val photoUrl: String?,
     @SerialName("position") val position: String?
 )
 
