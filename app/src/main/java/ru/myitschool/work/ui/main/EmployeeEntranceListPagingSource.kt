@@ -2,7 +2,7 @@ package ru.myitschool.work.ui.main
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import ru.myitschool.work.domain.entities.EmployeeEntranceEntity
+import ru.myitschool.work.entities.EmployeeEntranceEntity
 
 class EmployeeEntranceListPagingSource(
     private val request: suspend(pageNum: Int, pageSize: Int) ->Result<List<EmployeeEntranceEntity>>

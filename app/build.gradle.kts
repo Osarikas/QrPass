@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.androidx.camera.mlkit.vision)
     implementation(libs.androidx.paging.runtime.ktx)
     defaultLibrary()
+
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 }

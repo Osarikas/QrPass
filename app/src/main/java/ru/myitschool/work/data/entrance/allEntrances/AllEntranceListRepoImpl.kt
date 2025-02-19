@@ -1,7 +1,7 @@
 package ru.myitschool.work.data.entrance.allEntrances
 
 import ru.myitschool.work.domain.employeeEntrance.allEntrances.AllEntranceListRepo
-import ru.myitschool.work.domain.entities.EmployeeEntranceEntity
+import ru.myitschool.work.entities.EmployeeEntranceEntity
 
 class AllEntranceListRepoImpl(
     private val networkDataSource: AllEntranceListNetworkDataSource

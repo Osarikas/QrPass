@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.myitschool.work.databinding.ItemVisitBinding
-import ru.myitschool.work.domain.entities.EmployeeEntranceEntity
+import ru.myitschool.work.entities.EmployeeEntranceEntity
 import ru.myitschool.work.utils.dateConverter
 
 class EmployeeEntranceListAdapter : PagingDataAdapter<EmployeeEntranceEntity, EmployeeEntranceListAdapter.ViewHolder>(DiffUtil) {

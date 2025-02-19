@@ -15,7 +15,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.myitschool.work.R
 import ru.myitschool.work.databinding.FragmentMainBinding
-import ru.myitschool.work.domain.entities.UserEntity
+import ru.myitschool.work.entities.EmployeeEntity
 import ru.myitschool.work.ui.qr.scan.QrScanDestination
 import ru.myitschool.work.utils.UserState
 import ru.myitschool.work.utils.collectWhenStarted
@@ -55,7 +55,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                     binding.refresh.visibility = View.VISIBLE
                     binding.loading.visibility = View.GONE
                     binding.error.visibility = View.GONE
-                    showUserData(state.userEntity)
+                    showUserData(state.employeeEntity)
 
                 }
             }
@@ -102,12 +102,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             }
 
 
-            private fun showUserData(userEntity: UserEntity) {
+            private fun showUserData(employeeEntity: EmployeeEntity) {
                 binding.apply {
-                    fullname.text = userEntity.name
-                    println(userEntity.name)
-                    position.text = userEntity.position
-                    Picasso.get().load(userEntity.photoUrl).into(photo)
+                    fullname.text = employeeEntity.name
+                    println(employeeEntity.name)
+                    position.text = employeeEntity.position
+                    Picasso.get().load(employeeEntity.photoUrl).into(photo)
 
                     error.visibility = View.GONE
                     setViewsVisibility(View.VISIBLE)
