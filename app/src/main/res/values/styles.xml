@@ -4,15 +4,24 @@
     <style name="primary_text_color">
         <item name="android:textColor">@color/primary_text_color</item>
     </style>
-
     <style name="font_medium" parent="primary_text_color">
         <item name="android:fontFamily">@font/montserrat_medium</item>
     </style>
+
+
+    <style name="theme_color">
+        <item name="android:textColor">@color/theme_color</item>
+    </style>
+    <style name="theme_text_color" parent="theme_color">
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
 
     <style name="secondary_text_color">
         <item name="android:textColor">@color/secondary_text_color</item>
         <item name="fontFamily">@font/montserrat_medium</item>
     </style>
+
 
 
     <style name="login_input">

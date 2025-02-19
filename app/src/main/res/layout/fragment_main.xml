@@ -5,8 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_color">
-
+    
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp"/>
+    
     <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -26,43 +40,8 @@
             android:visibility="visible"
             tools:visibility="visible">
 
-            <TextView
-                android:id="@+id/fullname"
-                android:layout_width="match_parent"
-                android:layout_height="57dp"
-                android:layout_marginBottom="30sp"
-                android:fontFamily="@font/montserrat_bold"
-                android:textAlignment="center"
-                android:textSize="24sp"
-                tools:text="@tools:sample/full_names" />
 
-            <ImageView
-                android:id="@+id/photo"
-                android:layout_width="match_parent"
-                android:layout_height="188dp"
-                android:contentDescription="@string/app_name"
-                app:srcCompat="@drawable/avatar"
-                tools:srcCompat="@tools:sample/avatars" />
 
-            <TextView
-                android:id="@+id/position"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20sp"
-                android:fontFamily="@font/montserrat_medium"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                tools:text="Разработчик" />
-
-            <TextView
-                android:id="@+id/lastEntry"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10sp"
-                android:fontFamily="@font/montserrat_medium"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                tools:text="@tools:sample/date/mmddyy" />
 
             <TextView
                 android:id="@+id/error"
@@ -85,71 +64,162 @@
             android:visibility="gone"
             tools:visibility="gone" />
 
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/block_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/header_corner_radius"
+        android:paddingTop="30dp"
+        android:paddingHorizontal="16dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
-            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="64dp"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <Button
-                android:id="@+id/scan"
-                android:layout_width="match_parent"
+                android:id="@+id/refresh"
+                style="@style/theme_text_color"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/teal_700"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="@string/scan_btn"
-                android:textColor="@color/white" />
+                android:background="@android:color/transparent"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:text="@string/refresh_btn" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
 
             <Button
                 android:id="@+id/logout"
-                android:layout_width="match_parent"
+                style="@style/theme_text_color"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/teal_700"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="@string/logout_btn"
-                android:textColor="@color/white" />
+                android:background="@android:color/transparent"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:text="@string/logout_btn" />
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/photo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginVertical="24dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@drawable/avatar"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/fullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="68dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/theme_color"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            tools:text="@tools:sample/full_names" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/block_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="-44dp"
+        android:background="@drawable/main_corner_radius"
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="20dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintTop_toBottomOf="@id/block_header"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_left"
+        app:layout_constraintRight_toLeftOf="@+id/guideline_right">
+
+        <TextView
+            android:id="@+id/position"
+            style="@style/font_medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            tools:text="Разработчик" />
+
+        <TextView
+            android:id="@+id/lastEntry"
+            style="@style/secondary_text_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:singleLine="true"
+            tools:text="последний вход в 08:31 • 2024-02-31" />
 
         <Button
-            android:id="@+id/refresh"
+            android:id="@+id/scan"
+            style="@style/theme_text_color"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="28dp"
+            android:backgroundTint="@color/accent_color"
+            app:icon="@drawable/logo_scan"
+            app:cornerRadius="16dp"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:text="@string/scan_btn" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/block_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/history_corner_radius"
+        android:paddingTop="16dp"
+        android:paddingHorizontal="20dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintTop_toBottomOf="@+id/block_main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_left"
+        app:layout_constraintRight_toLeftOf="@+id/guideline_right">
+
+        <TextView
+            android:id="@+id/history_title"
+            style="@style/font_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginEnd="64dp"
-            android:backgroundTint="@color/teal_700"
-            android:fontFamily="@font/montserrat_bold"
-            android:text="@string/refresh_btn"
-            android:textColor="@color/white" />
+            android:layout_marginBottom="20dp"
+            android:text="@string/history_title"
+            android:textSize="16sp"/>
 
-        <LinearLayout
-            android:id="@+id/history"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/history_corner_radius"
-            android:paddingTop="16dp"
-            android:paddingHorizontal="20dp">
-
-            <TextView
-                android:id="@+id/history_title"
-                style="@style/font_medium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:text="@string/history_title"
-                android:textSize="16sp"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/content"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/history_corner_radius" />
-
-        </LinearLayout>
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_visit"/>
 
     </LinearLayout>
 

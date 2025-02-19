@@ -7,8 +7,8 @@
     <string name="login_error">Ошибка логина</string>
 
     <string name="main_title">Главная страница</string>
-    <string name="logout_btn">Выйти из аккаунта</string>
-    <string name="refresh_btn">Перезагрузить</string>
+    <string name="logout_btn">Выйти</string>
+    <string name="refresh_btn">Обновить</string>
     <string name="scan_btn">Сканировать</string>
     <string name="main_error">Ошибка</string>
 
