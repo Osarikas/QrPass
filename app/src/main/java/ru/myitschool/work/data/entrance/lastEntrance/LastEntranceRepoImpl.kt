@@ -12,7 +12,8 @@ class LastEntranceRepoImpl(
                 id = dto.id ?: 0,
                 scanTime = dto.scanTime,
                 readerName = dto.readerName ?: "",
-                type = dto.type ?: ""
+                type = dto.type ?: "",
+                entryType = dto.entryType
             )
         }
     }

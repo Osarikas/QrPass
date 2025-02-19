@@ -49,8 +49,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     when(state){
                         is LoginViewModel.State.Error -> {
                             error.visibility = View.VISIBLE
+                            error.text = state.message
                             loading.visibility = View.GONE
                             username.isEnabled = true
+
                         }
                         is LoginViewModel.State.Idle -> {
                             loading.visibility = View.GONE

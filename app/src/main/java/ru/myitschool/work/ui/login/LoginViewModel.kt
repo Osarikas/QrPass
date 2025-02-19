@@ -31,7 +31,6 @@ class LoginViewModel(
             if(username != "" && password != "")
                 login(username, password)
         }
-
     }
 
     sealed class State {
@@ -63,7 +62,9 @@ class LoginViewModel(
         val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
                 val repoImpl = LoginRepoImpl(
-                    networkDataSource = LoginNetworkDataSource()
+                    networkDataSource = LoginNetworkDataSource(
+                        context = extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as Application
+                    )
                 )
 
                 val useCase = LoginUseCase(repoImpl)

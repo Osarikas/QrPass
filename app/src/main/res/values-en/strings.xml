@@ -16,4 +16,5 @@
     <string name="result_null_text">Operation was cancelled</string>
     <string name="password_hint">Enter the password</string>
     <string name="history_title">Visit history</string>
+    <string name="login_unauthorized">Incorrect login or password</string>
 </resources>

@@ -19,15 +19,24 @@ import ru.myitschool.work.data.profile.ProfileNetworkDataSource
 import ru.myitschool.work.data.profile.ProfileRepoImpl
 import ru.myitschool.work.data.entrance.employeeEntrances.EmployeeEntranceListNetworkDataSource
 import ru.myitschool.work.data.entrance.employeeEntrances.EmployeeEntranceListRepoImpl
+import ru.myitschool.work.data.entrance.lastEntrance.LastEntranceNetworkDataSource
+import ru.myitschool.work.data.entrance.lastEntrance.LastEntranceRepoImpl
 import ru.myitschool.work.domain.profile.GetProfileUseCase
 import ru.myitschool.work.domain.employeeEntrance.employeeEntrances.GetEmployeeEntranceListUseCase
+import ru.myitschool.work.domain.employeeEntrance.lastEntrance.GetLastEntranceUseCase
+import ru.myitschool.work.entities.EmployeeEntranceEntity
 import ru.myitschool.work.utils.UserState
 
 class MainViewModel(
     private val infoUseCase: GetProfileUseCase,
     private val listUseCase: GetEmployeeEntranceListUseCase,
+    private val lastEntranceUseCase: GetLastEntranceUseCase,
     application: Application
 ) : AndroidViewModel(application) {
+    private val _userState = MutableStateFlow<UserState>(UserState.Loading)
+    val userState: StateFlow<UserState> get() = _userState
+    private val _dateState = MutableStateFlow<DateState>(DateState.Loading)
+    val dateState: StateFlow<DateState> get() = _dateState
 
     val listState = Pager(
         config = PagingConfig(
@@ -36,23 +45,14 @@ class MainViewModel(
             maxSize = 30
         )
     ) {
-        println("Creating PagingSource")
         EmployeeEntranceListPagingSource(listUseCase::invoke)
     }.flow.cachedIn(viewModelScope)
-    init {
-        viewModelScope.launch {
-            listState.collect { pagingData ->
-                if (pagingData.toString().isEmpty()) {
-                    println("No data in paging data.")
-                } else {
-                    println("Data received: $pagingData")
-                }
-            }
-        }
-    }
 
-    private val _userState = MutableStateFlow<UserState>(UserState.Loading)
-    val userState: StateFlow<UserState> get() = _userState
+    sealed class DateState {
+        data object Loading : DateState()
+        data class Success(val data : EmployeeEntranceEntity) : DateState()
+        data class Error(val message: String?) :  DateState()
+    }
 
     private val dataStoreManager = UserDataStoreManager(application)
 
@@ -63,6 +63,19 @@ class MainViewModel(
                 onSuccess = { data -> _userState.value = UserState.Success(data) },
                 onFailure = { e -> _userState.value = UserState.Error
                 println(e)}
+            )
+        }
+    }
+    fun getLastEntryDate(){
+        _dateState.value = DateState.Loading
+        viewModelScope.launch {
+            lastEntranceUseCase.invoke().fold(
+                onSuccess = { data ->
+                    _dateState.value = DateState.Success(data)
+                },
+                onFailure = { e ->
+                    _dateState.value = DateState.Error(e.message)
+                }
             )
         }
     }
@@ -89,12 +102,21 @@ class MainViewModel(
                         context = extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as Application
                     )
                 )
+                val lastEntranceRepoImpl = LastEntranceRepoImpl(
+                    networkDataSource = LastEntranceNetworkDataSource(
+                        context = extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as Application
+                    )
+                )
 
                 val infoUseCase = GetProfileUseCase(profileRepoImpl)
                 val listUseCase = GetEmployeeEntranceListUseCase(listInfoImpl)
+                val lastEntranceUseCase = GetLastEntranceUseCase(lastEntranceRepoImpl)
 
                 return MainViewModel(
-                    infoUseCase, listUseCase,  extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as Application
+                    infoUseCase,
+                    listUseCase,
+                    lastEntranceUseCase,
+                    extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as Application
                 ) as T
             }
         }
