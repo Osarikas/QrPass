@@ -16,7 +16,8 @@ class AllEntranceListRepoImpl(
                     id = dto.id ?: return@mapNotNull null,
                     scanTime = dto.scanTime ?: return@mapNotNull null,
                     readerName = dto.readerName ?: return@mapNotNull null,
-                    type = dto.type ?: return@mapNotNull null
+                    type = dto.type ?: return@mapNotNull null,
+                    entryType = dto.entryType ?: return@mapNotNull null,
                 )
             }?: return Result.failure(IllegalStateException("List parse error"))
         }

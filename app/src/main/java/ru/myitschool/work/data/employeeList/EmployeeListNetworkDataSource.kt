@@ -21,11 +21,11 @@ class EmployeeListNetworkDataSource(
     private val client = NetworkModule.httpClient
 
     private val userDataStoreManager = UserDataStoreManager.getInstance(context)
-    suspend fun getInfo():Result<EmployeePagingDTO> = withContext(Dispatchers.IO){
+    suspend fun getList(pageNum: Int, pageSize: Int):Result<EmployeePagingDTO> = withContext(Dispatchers.IO){
         runCatching {
             val username = userDataStoreManager.usernameFlow.first()
             val password = userDataStoreManager.passwordFlow.first()
-            val result = client.get("${Constants.SERVER_ADDRESS}/api/employee/all"){
+            val result = client.get("${Constants.SERVER_ADDRESS}/api/employee/all?page=$pageNum&size=$pageSize"){
                 headers{
                     basicAuth(username, password)
                 }

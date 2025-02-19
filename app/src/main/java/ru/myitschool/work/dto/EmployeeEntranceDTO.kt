@@ -10,5 +10,6 @@ data class EmployeeEntranceDTO(
     @SerialName("id") val id : Int?,
     @SerialName("entryTime") @Serializable(with = DateSerializer::class) val scanTime : Date?,
     @SerialName("readerName") val readerName: String?,
-    @SerialName("type") val type: String?
+    @SerialName("type") val type: String?,
+    @SerialName("entryType") val entryType: String?
 )

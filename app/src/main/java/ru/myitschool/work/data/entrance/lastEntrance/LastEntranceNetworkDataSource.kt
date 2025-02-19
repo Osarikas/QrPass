@@ -3,8 +3,7 @@ package ru.myitschool.work.data.entrance.lastEntrance
 import android.content.Context
 import io.ktor.client.call.body
 import io.ktor.client.request.basicAuth
-import io.ktor.client.request.post
-import io.ktor.client.statement.bodyAsText
+import io.ktor.client.request.get
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headers
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +23,7 @@ class LastEntranceNetworkDataSource(
         runCatching {
             val username = userDataStoreManager.usernameFlow.first()
             val password = userDataStoreManager.passwordFlow.first()
-            val result = client.post("${Constants.SERVER_ADDRESS}/api/entrance/last"){
+            val result = client.get("${Constants.SERVER_ADDRESS}/api/entrance/last"){
                 headers{
                     basicAuth(username, password)
                 }
@@ -32,7 +31,6 @@ class LastEntranceNetworkDataSource(
             if (result.status != HttpStatusCode.OK) {
                 error("Status ${result.status}")
             }
-            println(result.bodyAsText())
             result.body()
         }
     }
