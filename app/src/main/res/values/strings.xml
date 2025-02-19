@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">NTO Pass</string>
-    <string name="login_title">Логин</string>
-    <string name="username_hint">Введите ваше имя пользователя</string>
-    <string name="login_btn">Логин</string>
+
+    <string name="login_title">Войти в аккаунт</string>
+    <string name="username_hint">Введите логин</string>
+    <string name="login_btn">Войти</string>
     <string name="login_error">Ошибка логина</string>
 
     <string name="main_title">Главная страница</string>

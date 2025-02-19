@@ -20,53 +20,50 @@ tools:context="ru.myitschool.work.ui.login.LoginFragment">
     app:layout_constraintTop_toTopOf="parent">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/login_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/login_title"
         android:textAlignment="center"
-        android:textSize="20sp" />
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/username"
+        style="@style/login_input"
         android:layout_width="match_parent"
         android:layout_height="61dp"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/input_corner_radius"
         android:autofillHints="username"
-        android:ems="10"
-        android:fontFamily="@font/montserrat_medium"
         android:hint="@string/username_hint"
-        android:inputType="text"
-        android:textAlignment="textStart"
-        android:textColorLink="#000000" />
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/password"
+        style="@style/login_input"
         android:layout_width="match_parent"
         android:layout_height="61dp"
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/input_corner_radius"
         android:autofillHints="password"
-        android:ems="10"
-        android:fontFamily="@font/montserrat_medium"
         android:hint="@string/password_hint"
-        android:inputType="textPassword"
-        android:textAlignment="textStart"
-        android:textColorLink="#000000" />
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/loginBtn"
+        style="@style/secondary_text_color"
         android:layout_width="312dp"
         android:layout_height="68dp"
         android:layout_marginStart="10sp"
         android:layout_marginEnd="10sp"
-        android:backgroundTint="@color/enable_btn"
+        android:backgroundTint="@color/bg_color"
+        app:cornerRadius="16dp"
         android:enabled="false"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/montserrat_medium"
         android:text="@string/login_btn"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:cornerRadius="10sp" />
+        android:textColor="@color/secondary_text_color"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/error"

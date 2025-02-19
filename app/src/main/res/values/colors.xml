@@ -11,4 +11,12 @@
     <color name="enable_btn">#E78A07</color>
     <color name="disable_btn">#C3C3C3</color>
     <color name="gray">#E78A07</color>
+
+
+    <color name="theme_color">#FFFFFF</color>
+    <color name="primary_text_color">#000000</color>
+    <color name="secondary_text_color">#777777</color>
+    <color name="accent_color">#004BFF</color>
+    <color name="bg_color">#F2F1F7</color>
+    <color name="input_color">#E5E2F5</color>
 </resources>
