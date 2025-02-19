@@ -7,8 +7,7 @@ import java.util.Date
 
 @Serializable
 data class VisitDTO(
-    @SerialName("scanTime")
-    @Serializable(with = DateSerializer::class) val scanTime : Date?,
-    @SerialName("readerId") val readerId: Long?,
+    @SerialName("scanTime") @Serializable(with = DateSerializer::class) val scanTime : Date?,
+    @SerialName("readerId") val readerName: String?,
     @SerialName("type") val type: String?
 )

@@ -2,9 +2,11 @@ package ru.myitschool.work.data.info
 
 import android.content.Context
 import io.ktor.client.call.body
+import io.ktor.client.request.basicAuth
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.HttpStatusCode
+import io.ktor.http.headers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
@@ -22,8 +24,12 @@ class InfoNetworkDataSource(
     suspend fun getInfo():Result<UserDTO> = withContext(Dispatchers.IO){
         runCatching {
             val username = userDataStoreManager.usernameFlow.first()
-            val result = client.get("${Constants.SERVER_ADDRESS}/api/$username/info")
-
+            val password = userDataStoreManager.passwordFlow.first()
+            val result = client.get("${Constants.SERVER_ADDRESS}/api/employee/profile"){
+                headers{
+                    basicAuth(username, password)
+                }
+            }
             if (result.status != HttpStatusCode.OK) {
                 error("Status ${result.status}")
             }

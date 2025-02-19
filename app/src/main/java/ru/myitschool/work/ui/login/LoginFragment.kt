@@ -29,14 +29,16 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val username = binding.username.text
-                binding.loginBtn.isEnabled = username.length >= 3 && !username[0].isDigit() && username.matches(Regex("^[a-zA-Z0-9]*$"))
+                val password = binding.password.text
+                binding.loginBtn.isEnabled = username.length >= 3 && !username[0].isDigit() && username.matches(Regex("^[a-zA-Z0-9]*$")) &&
+                        password.length >= 6
 
             }
         }
         binding.username.addTextChangedListener(textWatcher)
         binding.loginBtn.isEnabled = false
         binding.loginBtn.setOnClickListener{
-            viewModel.login(binding.username.text.toString())
+            viewModel.login(binding.username.text.toString(), binding.password.text.toString())
 
         }
         lifecycleScope.launch {

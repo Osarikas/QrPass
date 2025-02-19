@@ -8,6 +8,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -57,6 +58,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 }
             }
         }
+        binding.content.layoutManager = LinearLayoutManager(requireContext())
+        val adapter = EmployeeEntranceListAdapter()
+        binding.content.adapter = adapter
+
+
         setFragmentResultListener(QrScanDestination.REQUEST_KEY) { _, bundle ->
             val qrData = QrScanDestination.getDataIfExist(bundle)
             println(qrData)
@@ -82,8 +88,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 binding.apply {
                     fullname.text = userEntity.name
                     position.text = userEntity.position
-                    lastEntry.text = viewModel.formatDate(userEntity.lastVisit)
-                    Picasso.get().load(userEntity.photo).into(photo)
+                    Picasso.get().load(userEntity.photoUrl).into(photo)
 
                     error.visibility = View.GONE
                     setViewsVisibility(View.VISIBLE)
@@ -98,7 +103,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             private fun setViewsVisibility(visibility: Int) {
                 binding.fullname.visibility = visibility
                 binding.position.visibility = visibility
-                binding.lastEntry.visibility = visibility
                 binding.photo.visibility = visibility
                 binding.logout.visibility = visibility
                 binding.scan.visibility = visibility

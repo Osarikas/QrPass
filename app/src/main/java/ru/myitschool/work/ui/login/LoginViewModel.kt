@@ -27,26 +27,27 @@ class LoginViewModel(
     init {
         viewModelScope.launch{
             val username = dataStoreManager.usernameFlow.first()
-            if(username != "")
-                login(username)
+            val password = dataStoreManager.passwordFlow.first()
+            if(username != "" && password != "")
+                login(username, password)
         }
 
     }
 
     sealed class State {
-        object Idle : State()
-        object Loading : State()
-        object Success : State()
+        data object Idle : State()
+        data object Loading : State()
+        data object Success : State()
         data class Error(val message: String?) :  State()
     }
 
 
-    fun login(username: String) {
+    fun login(username: String, password: String) {
         _state.value = State.Loading
         viewModelScope.launch{
-            useCase.invoke(username).fold(
-                onSuccess = { data ->
-                    dataStoreManager.saveUsername(username)
+            useCase.invoke(username, password).fold(
+                onSuccess = { _ ->
+                    dataStoreManager.saveCredentials(username, password)
                     _state.value = State.Success
                 },
                 onFailure = {e->

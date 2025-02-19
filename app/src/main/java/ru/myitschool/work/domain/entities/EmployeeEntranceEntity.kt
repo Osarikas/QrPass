@@ -2,8 +2,8 @@ package ru.myitschool.work.domain.entities
 
 import java.util.Date
 
-data class VisitEntity(
+data class EmployeeEntranceEntity(
     val scanTime : Date,
-    val readerId: Long,
+    val readerName: String,
     val type: String
 )

@@ -1,7 +1,7 @@
 package ru.myitschool.work.domain.visitsList
 
-class GetVisitListUseCase(
-    private val repo: VisitListRepo
+class GetEmployeeEntranceListUseCase(
+    private val repo: EmployeeEntranceListRepo
 ) {
     suspend operator fun invoke(pageNum : Int, pageSize: Int) = repo.getList(pageNum, pageSize)
 }

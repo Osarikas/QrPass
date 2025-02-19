@@ -7,13 +7,16 @@ class InfoRepoImpl(
     private val networkDataSource: InfoNetworkDataSource
 ): InfoRepo {
     override suspend fun getInfo(): Result<UserEntity> {
-        return networkDataSource.getInfo().map { dto ->
+        return networkDataSource.getInfo().map { dto->
             UserEntity(
-                name = dto.name,
-                position = dto.position,
-                lastVisit = dto.lastVisit,
-                photo = dto.photo
+                id = dto.id ?: 0,
+                login = dto.login ?: "",
+                name = dto.login ?: "",
+                authority = dto.authority ?: "",
+                photoUrl = dto.photoUrl,
+                position = dto.position ?: ""
             )
         }
+
     }
 }
