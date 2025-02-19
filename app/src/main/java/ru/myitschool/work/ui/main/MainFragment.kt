@@ -20,6 +20,7 @@ import ru.myitschool.work.ui.qr.scan.QrScanDestination
 import ru.myitschool.work.utils.UserState
 import ru.myitschool.work.utils.collectWhenStarted
 import ru.myitschool.work.utils.collectWithLifecycle
+import ru.myitschool.work.utils.dateTimeConverter
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
@@ -34,6 +35,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         _binding = FragmentMainBinding.bind(view)
 
         viewModel.getUserData()
+        viewModel.getLastEntryDate()
 
         binding.logout.setOnClickListener { logout() }
         binding.scan.setOnClickListener { onScanClick() }
@@ -56,7 +58,30 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                     binding.loading.visibility = View.GONE
                     binding.error.visibility = View.GONE
                     showUserData(state.employeeEntity)
-
+                }
+            }
+        }
+        viewModel.dateState.collectWhenStarted(this) { state ->
+            println(state)
+            when (state) {
+                is MainViewModel.DateState.Error -> {
+                    binding.error.visibility = View.VISIBLE
+                    binding.error.text = state.message
+                    binding.loading.visibility = View.GONE
+                    binding.content.visibility = View.GONE
+                }
+                is MainViewModel.DateState.Loading -> {
+                    binding.error.visibility = View.GONE
+                    binding.loading.visibility = View.VISIBLE
+                    binding.lastEntry.visibility = View.GONE
+                    binding.content.visibility = View.GONE
+                }
+                is MainViewModel.DateState.Success -> {
+                    binding.error.visibility = View.GONE
+                    binding.loading.visibility = View.GONE
+                    binding.lastEntry.text = dateTimeConverter(state.data.scanTime)
+                    binding.lastEntry.visibility = View.VISIBLE
+                    binding.content.visibility = View.VISIBLE
                 }
             }
         }
@@ -65,11 +90,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         binding.refresh.setOnClickListener {
             viewModel.getUserData()
             adapter.refresh()
+            viewModel.getLastEntryDate()
         }
         binding.content.adapter = adapter
         viewModel.listState.collectWithLifecycle(this) { data ->
             adapter.submitData(data)
         }
+
         adapter.loadStateFlow.collectWithLifecycle(this) { loadState ->
             val state = loadState.refresh
             binding.error.visibility = if (state is LoadState.Error) View.VISIBLE else View.GONE
@@ -88,10 +115,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             findNavController().navigate(R.id.qrResultFragment, bundleToQrResult)
 
         }
-
-
     }
-
             private fun logout() {
                 lifecycleScope.launch {
                     viewModel.clearUsername()
@@ -100,8 +124,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 }
 
             }
-
-
             private fun showUserData(employeeEntity: EmployeeEntity) {
                 binding.apply {
                     fullname.text = employeeEntity.name
