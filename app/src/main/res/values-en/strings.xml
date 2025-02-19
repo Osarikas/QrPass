@@ -15,4 +15,5 @@
     <string name="close_btn">Close</string>
     <string name="result_null_text">Operation was cancelled</string>
     <string name="password_hint">Enter the password</string>
+    <string name="history_title">Visit history</string>
 </resources>

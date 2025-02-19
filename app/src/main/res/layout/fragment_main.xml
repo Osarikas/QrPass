@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bg_color">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -124,10 +125,32 @@
             android:text="@string/refresh_btn"
             android:textColor="@color/white" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/content"
+        <LinearLayout
+            android:id="@+id/history"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/history_corner_radius"
+            android:paddingTop="16dp"
+            android:paddingHorizontal="20dp">
+
+            <TextView
+                android:id="@+id/history_title"
+                style="@style/font_medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/history_title"
+                android:textSize="16sp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/history_corner_radius" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

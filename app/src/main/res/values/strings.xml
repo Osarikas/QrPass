@@ -17,6 +17,7 @@
     <string name="result_null_text">Вход был отменён</string>
     <string name="close_btn">Закрыть</string>
     <string name="password_hint">Введите пароль</string>
+    <string name="history_title">История посещений</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 

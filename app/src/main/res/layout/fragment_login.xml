@@ -6,78 +6,92 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="ru.myitschool.work.ui.login.LoginFragment">
 
-<LinearLayout
-    android:layout_width="342dp"
-    android:layout_height="280dp"
-    android:layout_marginStart="32dp"
-    android:layout_marginTop="250dp"
-    android:layout_marginEnd="32dp"
-    android:layout_marginBottom="350dp"
-    android:orientation="vertical"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
-
-    <TextView
-        android:id="@+id/login_title"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="342dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="@string/login_title"
-        android:textAlignment="center"
-        android:textSize="24sp" />
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="350dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/username"
-        style="@style/login_input"
-        android:layout_width="match_parent"
-        android:layout_height="61dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/input_corner_radius"
-        android:autofillHints="username"
-        android:hint="@string/username_hint"
-        android:inputType="text" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_login"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/password"
-        style="@style/login_input"
-        android:layout_width="match_parent"
-        android:layout_height="61dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/input_corner_radius"
-        android:autofillHints="password"
-        android:hint="@string/password_hint"
-        android:inputType="textPassword" />
+        <TextView
+            android:id="@+id/login_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/login_title"
+            android:textAlignment="center"
+            android:textColor="@color/primary_text_color"
+            android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/loginBtn"
-        style="@style/secondary_text_color"
-        android:layout_width="312dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="10sp"
-        android:layout_marginEnd="10sp"
-        android:backgroundTint="@color/bg_color"
-        app:cornerRadius="16dp"
-        android:enabled="false"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/login_btn"
-        android:textColor="@color/secondary_text_color"
-        android:textSize="20sp" />
+        <EditText
+            android:id="@+id/username"
+            style="@style/login_input"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_marginTop="20dp"
+            android:autofillHints="username"
+            android:background="@drawable/input_corner_radius"
+            android:hint="@string/username_hint"
+            android:inputType="text" />
 
-    <TextView
-        android:id="@+id/error"
-        android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="@string/login_error"
-        android:textAlignment="center"
-        android:textColor="@color/red"
-        android:textSize="20sp"
-        android:visibility="gone"
-        tools:visibility="gone" />
+        <EditText
+            android:id="@+id/password"
+            style="@style/login_input"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_marginTop="20dp"
+            android:autofillHints="password"
+            android:background="@drawable/input_corner_radius"
+            android:hint="@string/password_hint"
+            android:inputType="textPassword" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/loginBtn"
+            style="@style/secondary_text_color"
+            android:layout_width="312dp"
+            android:layout_height="68dp"
+            android:layout_marginStart="10sp"
+            android:layout_marginEnd="10sp"
+            android:backgroundTint="@color/bg_color"
+            android:enabled="false"
+            android:fontFamily="@font/montserrat_medium"
+            android:text="@string/login_btn"
+            android:textColor="@color/secondary_text_color"
+            android:textSize="20sp"
+            app:cornerRadius="16dp" />
+
+        <TextView
+            android:id="@+id/error"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/login_error"
+            android:textAlignment="center"
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            android:visibility="gone"
+            tools:visibility="gone" />
+
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/loading"
@@ -90,4 +104,5 @@ tools:context="ru.myitschool.work.ui.login.LoginFragment">
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
