@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 import ru.myitschool.work.data.door.DoorNetworkDataSource
 import ru.myitschool.work.data.door.DoorRepoImpl
 import ru.myitschool.work.domain.door.OpenDoorUseCase
-import ru.myitschool.work.domain.entities.OpenEntity
 
 class QrResultViewModel(
     private val useCase: OpenDoorUseCase,
@@ -23,15 +22,15 @@ class QrResultViewModel(
     val state: StateFlow<State> = _state.asStateFlow()
 
     sealed class State{
-        object Success : State()
-        object Loading : State()
-        object Error : State()
+        data object Success : State()
+        data object Loading : State()
+        data object Error : State()
     }
-    fun openDoor(openEntity: OpenEntity){
+    fun openDoor(code: String){
         _state.value = State.Loading
         viewModelScope.launch{
-            useCase.invoke(openEntity).fold(
-                onSuccess = { data->
+            useCase.invoke(code).fold(
+                onSuccess = { _ ->
                     _state.value = State.Success
                 },
                 onFailure = { _ ->

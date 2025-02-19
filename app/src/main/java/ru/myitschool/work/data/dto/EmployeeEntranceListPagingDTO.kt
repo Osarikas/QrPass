@@ -4,6 +4,6 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class OpenRequestDTO(
-   @SerialName("value") val value: Long
+data class EmployeeEntranceListPagingDTO(
+    @SerialName("content") val content : List<EmployeeEntranceDTO>?
 )

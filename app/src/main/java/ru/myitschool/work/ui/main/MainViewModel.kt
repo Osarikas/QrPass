@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,40 +17,52 @@ import kotlinx.coroutines.withContext
 import ru.myitschool.work.data.UserDataStoreManager
 import ru.myitschool.work.data.info.InfoNetworkDataSource
 import ru.myitschool.work.data.info.InfoRepoImpl
+import ru.myitschool.work.data.entrance.employeeEntrances.EmployeeEntranceListNetworkDataSource
+import ru.myitschool.work.data.entrance.employeeEntrances.EmployeeEntranceListRepoImpl
 import ru.myitschool.work.domain.info.GetInfoUseCase
+import ru.myitschool.work.domain.employeeEntrance.employeeEntrances.GetEmployeeEntranceListUseCase
 import ru.myitschool.work.utils.UserState
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 class MainViewModel(
-    private val useCase: GetInfoUseCase,
+    private val infoUseCase: GetInfoUseCase,
+    private val listUseCase: GetEmployeeEntranceListUseCase,
     application: Application
 ) : AndroidViewModel(application) {
+
+    val listState = Pager(
+        config = PagingConfig(
+            pageSize = 10,
+            enablePlaceholders = false,
+            maxSize = 30
+        )
+    ) {
+        println("Creating PagingSource")
+        EmployeeEntranceListPagingSource(listUseCase::invoke)
+    }.flow.cachedIn(viewModelScope)
+    init {
+        viewModelScope.launch {
+            listState.collect { pagingData ->
+                if (pagingData.toString().isEmpty()) {
+                    println("No data in paging data.")
+                } else {
+                    println("Data received: $pagingData")
+                }
+            }
+        }
+    }
 
     private val _userState = MutableStateFlow<UserState>(UserState.Loading)
     val userState: StateFlow<UserState> get() = _userState
 
     private val dataStoreManager = UserDataStoreManager(application)
 
-    fun formatDate(date: String): String {
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-        val outputFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
-        return try {
-            val formattedDate = inputFormat.parse(date)
-            if (formattedDate != null) {
-                outputFormat.format(formattedDate)
-            } else{}
-        } catch (_: Exception) {
-            "Invalid Date"
-        }.toString()
-    }
-
     fun getUserData() {
         _userState.value = UserState.Loading
         viewModelScope.launch {
-            useCase.invoke().fold(
+            infoUseCase.invoke().fold(
                 onSuccess = { data -> _userState.value = UserState.Success(data) },
-                onFailure = { _userState.value = UserState.Error }
+                onFailure = { e -> _userState.value = UserState.Error
+                println(e)}
             )
         }
     }
@@ -55,7 +70,7 @@ class MainViewModel(
     fun clearUsername() {
         viewModelScope.launch{
             withContext(Dispatchers.IO) {
-                dataStoreManager.clearUsername()
+                dataStoreManager.clearCredentials()
             }
         }
 
@@ -64,16 +79,22 @@ class MainViewModel(
         @Suppress("UNCHECKED_CAST")
         val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
-                val repoImpl = InfoRepoImpl(
+                val infoRepoImpl = InfoRepoImpl(
                     networkDataSource = InfoNetworkDataSource(
                         context = extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as Application
                     )
                 )
+                val listInfoImpl = EmployeeEntranceListRepoImpl(
+                    networkDataSource = EmployeeEntranceListNetworkDataSource(
+                        context = extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as Application
+                    )
+                )
 
-                val useCase = GetInfoUseCase(repoImpl)
+                val infoUseCase = GetInfoUseCase(infoRepoImpl)
+                val listUseCase = GetEmployeeEntranceListUseCase(listInfoImpl)
 
                 return MainViewModel(
-                    useCase, extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as Application
+                    infoUseCase, listUseCase,  extras[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as Application
                 ) as T
             }
         }

@@ -1,3 +1,5 @@
+import com.android.sdklib.AndroidVersion.VersionCodes.UPSIDE_DOWN_CAKE
+
 plugins {
     androidApplication
     jetbrainsKotlinSerialization version Version.Kotlin.language
@@ -9,12 +11,12 @@ plugins {
 val packageName = "ru.myitschool.work"
 android {
     namespace = packageName
-    compileSdk = 35
+    compileSdk = UPSIDE_DOWN_CAKE
 
     defaultConfig {
         applicationId = packageName
         minSdk = 31
-        targetSdk = 35
+        targetSdk = UPSIDE_DOWN_CAKE
         versionCode = 1
         versionName = "1.0"
 
@@ -38,12 +40,11 @@ android {
 dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    defaultLibrary()
+
 
     implementation(Dependencies.AndroidX.activity)
     implementation(Dependencies.AndroidX.fragment)
@@ -65,10 +66,10 @@ dependencies {
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
     implementation(libs.androidx.camera.mlkit.vision)
-
-    val hilt = "2.51.1"
+    implementation(libs.androidx.paging.runtime.ktx)
+    defaultLibrary()
     implementation(libs.hilt.android)
-    kapt("com.google.dagger:hilt-android-compiler:$hilt")
+    kapt(libs.hilt.android.compiler)
 }
 
 kapt {

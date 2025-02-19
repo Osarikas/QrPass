@@ -7,7 +7,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ru.myitschool.work.R
 import ru.myitschool.work.databinding.FragmentQrResultBinding
-import ru.myitschool.work.domain.entities.OpenEntity
 import ru.myitschool.work.utils.collectWhenStarted
 
 class QrResultFragment : Fragment(R.layout.fragment_qr_result) {
@@ -19,7 +18,7 @@ class QrResultFragment : Fragment(R.layout.fragment_qr_result) {
         _binding = FragmentQrResultBinding.bind(view)
         var qrData = arguments?.getString("qr_data")
         if (qrData != null) {
-            viewModel.openDoor(OpenEntity(qrData.toLong()))
+            viewModel.openDoor(qrData)
         }
         else{
             binding.result.text = getString(R.string.result_null_text)

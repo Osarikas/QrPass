@@ -8,6 +8,8 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -17,6 +19,7 @@ import ru.myitschool.work.domain.entities.UserEntity
 import ru.myitschool.work.ui.qr.scan.QrScanDestination
 import ru.myitschool.work.utils.UserState
 import ru.myitschool.work.utils.collectWhenStarted
+import ru.myitschool.work.utils.collectWithLifecycle
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
@@ -31,7 +34,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         _binding = FragmentMainBinding.bind(view)
 
         viewModel.getUserData()
-        binding.refresh.setOnClickListener { viewModel.getUserData() }
+
         binding.logout.setOnClickListener { logout() }
         binding.scan.setOnClickListener { onScanClick() }
         viewModel.userState.collectWhenStarted(this) { state ->
@@ -57,6 +60,27 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 }
             }
         }
+        binding.content.layoutManager = LinearLayoutManager(requireContext())
+        val adapter = EmployeeEntranceListAdapter()
+        binding.refresh.setOnClickListener {
+            viewModel.getUserData()
+            adapter.refresh()
+        }
+        binding.content.adapter = adapter
+        viewModel.listState.collectWithLifecycle(this) { data ->
+            adapter.submitData(data)
+        }
+        adapter.loadStateFlow.collectWithLifecycle(this) { loadState ->
+            val state = loadState.refresh
+            binding.error.visibility = if (state is LoadState.Error) View.VISIBLE else View.GONE
+            binding.loading.visibility = if (state is LoadState.Loading) View.VISIBLE else View.GONE
+
+            if (state is LoadState.Error) {
+                binding.error.text = state.error.message.toString()
+            }
+        }
+
+
         setFragmentResultListener(QrScanDestination.REQUEST_KEY) { _, bundle ->
             val qrData = QrScanDestination.getDataIfExist(bundle)
             println(qrData)
@@ -81,9 +105,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             private fun showUserData(userEntity: UserEntity) {
                 binding.apply {
                     fullname.text = userEntity.name
+                    println(userEntity.name)
                     position.text = userEntity.position
-                    lastEntry.text = viewModel.formatDate(userEntity.lastVisit)
-                    Picasso.get().load(userEntity.photo).into(photo)
+                    Picasso.get().load(userEntity.photoUrl).into(photo)
 
                     error.visibility = View.GONE
                     setViewsVisibility(View.VISIBLE)
@@ -98,7 +122,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             private fun setViewsVisibility(visibility: Int) {
                 binding.fullname.visibility = visibility
                 binding.position.visibility = visibility
-                binding.lastEntry.visibility = visibility
                 binding.photo.visibility = visibility
                 binding.logout.visibility = visibility
                 binding.scan.visibility = visibility
