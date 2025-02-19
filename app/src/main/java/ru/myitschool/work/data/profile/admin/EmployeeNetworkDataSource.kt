@@ -1,4 +1,4 @@
-package ru.myitschool.work.data.info
+package ru.myitschool.work.data.profile.admin
 
 import android.content.Context
 import io.ktor.client.call.body
@@ -12,20 +12,19 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import ru.myitschool.work.core.Constants
 import ru.myitschool.work.data.UserDataStoreManager
-import ru.myitschool.work.data.dto.UserDTO
+import ru.myitschool.work.dto.EmployeeDTO
 import ru.myitschool.work.utils.NetworkModule
 
-class InfoNetworkDataSource(
+class EmployeeNetworkDataSource(
     context: Context
 ) {
     private val client = NetworkModule.httpClient
-
     private val userDataStoreManager = UserDataStoreManager.getInstance(context)
-    suspend fun getInfo():Result<UserDTO> = withContext(Dispatchers.IO){
+    suspend fun getProfile(login : String):Result<EmployeeDTO> = withContext(Dispatchers.IO){
         runCatching {
             val username = userDataStoreManager.usernameFlow.first()
             val password = userDataStoreManager.passwordFlow.first()
-            val result = client.post("${Constants.SERVER_ADDRESS}/api/employee/profile"){
+            val result = client.post("${Constants.SERVER_ADDRESS}/api/employee/$login"){
                 headers{
                     basicAuth(username, password)
                 }

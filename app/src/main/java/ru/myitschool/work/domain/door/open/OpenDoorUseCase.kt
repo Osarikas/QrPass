@@ -1,4 +1,4 @@
-package ru.myitschool.work.domain.door
+package ru.myitschool.work.domain.door.open
 
 class OpenDoorUseCase(
    private val repo: DoorRepo

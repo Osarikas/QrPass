@@ -1,10 +1,11 @@
-package ru.myitschool.work.domain.entities
+package ru.myitschool.work.entities
 
-data class UserEntity(
+data class EmployeeEntity(
     val id: Long,
     val login: String,
     val name: String,
     val authority: String,
     val photoUrl: String?,
-    val position: String
+    val position: String,
+    val qrEnabled: Boolean
 )

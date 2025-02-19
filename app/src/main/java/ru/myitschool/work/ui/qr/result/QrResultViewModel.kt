@@ -10,9 +10,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.myitschool.work.data.door.DoorNetworkDataSource
-import ru.myitschool.work.data.door.DoorRepoImpl
-import ru.myitschool.work.domain.door.OpenDoorUseCase
+import ru.myitschool.work.data.door.open.DoorNetworkDataSource
+import ru.myitschool.work.data.door.open.DoorRepoImpl
+import ru.myitschool.work.domain.door.open.OpenDoorUseCase
 
 class QrResultViewModel(
     private val useCase: OpenDoorUseCase,

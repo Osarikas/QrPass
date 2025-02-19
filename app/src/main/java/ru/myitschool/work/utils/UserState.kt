@@ -1,9 +1,9 @@
 package ru.myitschool.work.utils
 
-import ru.myitschool.work.domain.entities.UserEntity
+import ru.myitschool.work.entities.EmployeeEntity
 
 sealed class UserState {
     object Loading : UserState()
-    data class Success(val userEntity: UserEntity) : UserState()
+    data class Success(val employeeEntity: EmployeeEntity) : UserState()
     object Error : UserState()
 }

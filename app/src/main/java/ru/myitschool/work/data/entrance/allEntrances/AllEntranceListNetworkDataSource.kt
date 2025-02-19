@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import ru.myitschool.work.core.Constants
 import ru.myitschool.work.data.UserDataStoreManager
-import ru.myitschool.work.data.dto.EmployeeEntranceListPagingDTO
+import ru.myitschool.work.dto.EmployeeEntranceListPagingDTO
 import ru.myitschool.work.utils.NetworkModule
 
 class AllEntranceListNetworkDataSource(

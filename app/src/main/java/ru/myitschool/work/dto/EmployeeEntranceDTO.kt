@@ -1,4 +1,4 @@
-package ru.myitschool.work.data.dto
+package ru.myitschool.work.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

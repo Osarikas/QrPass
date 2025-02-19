@@ -1,6 +1,6 @@
 package ru.myitschool.work.data.entrance.employeeEntrances
 
-import ru.myitschool.work.domain.entities.EmployeeEntranceEntity
+import ru.myitschool.work.entities.EmployeeEntranceEntity
 import ru.myitschool.work.domain.employeeEntrance.employeeEntrances.EmployeeEntranceListRepo
 
 class EmployeeEntranceListRepoImpl(
