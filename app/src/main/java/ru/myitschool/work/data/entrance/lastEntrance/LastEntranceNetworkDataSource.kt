@@ -28,7 +28,7 @@ class LastEntranceNetworkDataSource(
                     basicAuth(username, password)
                 }
             }
-            if (result.status != HttpStatusCode.OK) {
+            if (result.status != HttpStatusCode.OK && result.status != HttpStatusCode.NoContent) {
                 error("Status ${result.status}")
             }
             result.body()

@@ -20,6 +20,10 @@
     <string name="history_title">История посещений</string>
     <string name="login_unauthorized">Неправильное имя пользователя или пароль</string>
     <string name="search_hint">Введите логин сотрудника</string>
+    <string name="admin_unauthorized">Вы не авторизованы</string>
+    <string name="admin_forbidden">Не достаточно прав \n
+    Как ты сюда попал?</string>
+    <string name="not_found">404 Не найдено</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 

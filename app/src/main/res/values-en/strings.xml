@@ -18,4 +18,8 @@
     <string name="history_title">Visit history</string>
     <string name="login_unauthorized">Incorrect login or password</string>
     <string name="search_hint">Enter the employee\'s username</string>
+    <string name="admin_unauthorized">Unauthorized</string>
+    <string name="admin_forbidden">Forbidden \n
+        How did you get here?</string>
+    <string name="not_found"> 404 Not Found</string>
 </resources>

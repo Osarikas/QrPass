@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_loginFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_admin"
+            app:destination="@id/admin" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -21,6 +24,9 @@
         <action
             android:id="@+id/action_mainFragment_to_qrScanFragment"
             app:destination="@id/qrScanFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_admin"
+            app:destination="@id/admin" />
     </fragment>
     <fragment
         android:id="@+id/qrScanFragment"
@@ -40,4 +46,9 @@
             android:id="@+id/action_qrResultFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/admin"
+        android:name="ru.myitschool.work.ui.admin.AdminFragment"
+        android:label="fragment_admin"
+        tools:layout="@layout/fragment_admin" />
 </navigation>

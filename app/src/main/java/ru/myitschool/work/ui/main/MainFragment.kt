@@ -1,7 +1,10 @@
 package ru.myitschool.work.ui.main
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
+
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
@@ -9,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import androidx.paging.map
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.delay
@@ -36,7 +40,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         viewModel.getUserData()
         viewModel.getLastEntryDate()
-
+        findNavController().navigate(R.id.admin)
         binding.logout.setOnClickListener { logout() }
         binding.scan.setOnClickListener { onScanClick() }
         viewModel.userState.collectWhenStarted(this) { state ->
@@ -125,15 +129,27 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
             }
             private fun showUserData(employeeEntity: EmployeeEntity) {
-                binding.apply {
-                    fullname.text = employeeEntity.name
-                    println(employeeEntity.name)
-                    position.text = employeeEntity.position
-                    Picasso.get().load(employeeEntity.photoUrl).into(photo)
 
-                    error.visibility = View.GONE
-                    setViewsVisibility(View.VISIBLE)
+                binding.fullname.text = employeeEntity.name
+                println(employeeEntity.name)
+                binding.position.text = employeeEntity.position
+                Picasso.get().load(employeeEntity.photoUrl).into(binding.photo)
+
+                binding.error.visibility = View.GONE
+                setViewsVisibility(View.VISIBLE)
+
+                binding.scan.isEnabled = employeeEntity.qrEnabled
+                when(employeeEntity.qrEnabled){
+                    true -> {
+                        binding.scan.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.accent_color))
+                        binding.scan.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                    }
+                    false -> {
+                        binding.scan.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.bg_color))
+                        binding.scan.setTextColor(ContextCompat.getColor(requireContext(), R.color.secondary_text_color))
+                    }
                 }
+
             }
 
             private fun showError() {
@@ -147,6 +163,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 binding.photo.visibility = visibility
                 binding.logout.visibility = visibility
                 binding.scan.visibility = visibility
+                binding.blockMain.visibility = visibility
+                binding.blockHistory.visibility = visibility
             }
 
 

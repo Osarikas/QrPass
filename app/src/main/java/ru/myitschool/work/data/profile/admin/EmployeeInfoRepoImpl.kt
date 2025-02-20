@@ -1,11 +1,11 @@
 package ru.myitschool.work.data.profile.admin
 
 import ru.myitschool.work.entities.EmployeeEntity
-import ru.myitschool.work.domain.profile.admin.EmployeeProfileRepo
+import ru.myitschool.work.domain.profile.admin.EmployeeInfoRepo
 
-class EmployeeProfileRepoImpl(
-    private val networkDataSource: EmployeeNetworkDataSource
-) : EmployeeProfileRepo {
+class EmployeeInfoRepoImpl(
+    private val networkDataSource: EmployeeInfoNetworkDataSource
+) : EmployeeInfoRepo {
     override suspend fun getInfo(login : String): Result<EmployeeEntity> {
         return networkDataSource.getProfile(login).map { dto ->
             EmployeeEntity(

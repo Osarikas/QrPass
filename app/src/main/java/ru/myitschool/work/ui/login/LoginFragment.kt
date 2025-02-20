@@ -23,6 +23,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = FragmentLoginBinding.bind(view)
+
         val textWatcher = object : TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
@@ -37,9 +38,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 binding.loginBtn.isEnabled = isEnabled
                 if(isEnabled){
                     binding.loginBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.accent_color))
+                    binding.loginBtn.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                 }
                 else{
                     binding.loginBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.bg_color))
+                    binding.loginBtn.setTextColor(ContextCompat.getColor(requireContext(), R.color.secondary_text_color))
                 }
 
             }
