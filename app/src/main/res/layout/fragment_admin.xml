@@ -63,26 +63,28 @@
         android:id="@+id/block_employee"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
         android:layout_marginTop="20dp"
         android:background="@drawable/history_corner_radius"
-        android:paddingTop="16dp"
+        android:orientation="vertical"
         android:paddingHorizontal="20dp"
-        app:layout_constrainedWidth="true"
+        android:paddingTop="16dp"
         app:layout_constrainedHeight="true"
-        app:layout_constraintTop_toBottomOf="@+id/block_header"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="1"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/guideline_left"
-        app:layout_constraintRight_toLeftOf="@+id/guideline_right">
+        app:layout_constraintRight_toLeftOf="@+id/guideline_right"
+        app:layout_constraintTop_toBottomOf="@+id/block_header"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginBottom="24dp"
+            android:orientation="horizontal"
             android:paddingHorizontal="12dp"
-            android:visibility="gone">
+            android:visibility="gone"
+            tools:visibility="gone">
 
             <ImageView
                 android:id="@+id/avatar"
@@ -97,29 +99,31 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
-                android:layout_gravity="center_vertical">
+                android:orientation="vertical"
+                android:visibility="visible"
+                tools:visibility="visible">
 
                 <TextView
-                    android:id="@+id/visit_reader_id"
+                    android:id="@+id/userName"
                     style="@style/font_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:textSize="12sp"
                     android:singleLine="true"
-                    tools:text="Артемий ФИО"/>
+                    android:textSize="12sp"
+                    tools:text="Артемий ФИО" />
 
                 <TextView
-                    android:id="@+id/уь_direction"
+                    android:id="@+id/position"
                     style="@style/secondary_text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
                     android:singleLine="true"
-                    tools:text="Вход"/>
+                    android:textSize="12sp"
+                    tools:text="Вход" />
 
             </LinearLayout>
 
@@ -130,26 +134,44 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
                 android:backgroundTint="@color/accent_color"
+                android:fontFamily="@font/montserrat_medium"
+                android:singleLine="true"
                 android:text="@string/block_btn"
                 android:textAllCaps="false"
-                android:fontFamily="@font/montserrat_medium"
                 android:textColor="@color/white"
                 android:textSize="8sp"
-                android:singleLine="true"
                 app:cornerRadius="16dp"
                 tools:ignore="SmallSp" />
 
         </LinearLayout>
 
 
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/content"
+            android:id="@+id/usersList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/item_employee" />
+            android:visibility="visible"
+            tools:listitem="@layout/item_employee"
+            tools:visibility="visible" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:lineSpacingExtra="8sp"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/block_employee"
+        tools:text="Error"
+        tools:visibility="gone" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

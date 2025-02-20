@@ -27,7 +27,7 @@
         android:layout_gravity="center_vertical">
 
         <TextView
-            android:id="@+id/visit_reader_id"
+            android:id="@+id/userName"
             style="@style/font_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             tools:text="Артемий ФИО"/>
 
         <TextView
-            android:id="@+id/уь_direction"
+            android:id="@+id/position"
             style="@style/secondary_text_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
