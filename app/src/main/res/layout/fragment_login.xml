@@ -50,6 +50,7 @@ tools:context="ru.myitschool.work.ui.login.LoginFragment">
             android:layout_marginTop="20dp"
             android:autofillHints="username"
             android:background="@drawable/input_corner_radius"
+            android:textSize="16sp"
             android:hint="@string/username_hint"
             android:inputType="text" />
 
@@ -61,6 +62,7 @@ tools:context="ru.myitschool.work.ui.login.LoginFragment">
             android:layout_marginTop="20dp"
             android:autofillHints="password"
             android:background="@drawable/input_corner_radius"
+            android:textSize="16sp"
             android:hint="@string/password_hint"
             android:inputType="textPassword" />
 
@@ -73,6 +75,7 @@ tools:context="ru.myitschool.work.ui.login.LoginFragment">
             android:layout_marginEnd="10sp"
             android:backgroundTint="@color/bg_color"
             android:enabled="false"
+            android:textAllCaps="false"
             android:fontFamily="@font/montserrat_medium"
             android:text="@string/login_btn"
             android:textColor="@color/secondary_text_color"

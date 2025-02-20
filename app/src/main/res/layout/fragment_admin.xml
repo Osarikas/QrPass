@@ -5,29 +5,60 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_color"
     tools:context=".admin">
 
-    <EditText
-        android:id="@+id/search"
-        style="@style/login_input"
-        android:layout_width="279dp"
-        android:layout_height="42dp"
-        android:autofillHints=""
-        android:background="@drawable/input_corner_radius"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/search_btn"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:contentDescription="@string/scan_btn"
-        android:src="@drawable/avatar_alt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/search" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp"/>
+
+    <LinearLayout
+        android:id="@+id/block_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/admin_header_corner_radius"
+        android:padding="36dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/search"
+            style="@style/login_input"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:background="@drawable/input_corner_radius"
+            android:inputType="text"
+            android:textSize="12sp"
+            android:singleLine="true"
+            android:hint="@string/search_hint" />
+
+        <ImageButton
+            android:id="@+id/search_btn"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="20dp"
+            android:contentDescription="@string/scan_btn"
+            android:src="@drawable/logo_search"
+            android:background="@android:color/transparent" />
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"

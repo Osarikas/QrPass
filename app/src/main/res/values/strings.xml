@@ -19,6 +19,7 @@
     <string name="password_hint">Введите пароль</string>
     <string name="history_title">История посещений</string>
     <string name="login_unauthorized">Неправильное имя пользователя или пароль</string>
+    <string name="search_hint">Введите логин сотрудника</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 
