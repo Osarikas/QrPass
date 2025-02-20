@@ -53,9 +53,10 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="20dp"
+            app:cornerRadius="16dp"
             android:contentDescription="@string/scan_btn"
             android:src="@drawable/logo_search"
-            android:background="@android:color/transparent" />
+            android:background="@drawable/search_corner_radius" />
 
     </LinearLayout>
 

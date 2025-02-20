@@ -15,6 +15,7 @@
         android:layout_gravity="start"
         android:background="@android:color/transparent"
         android:importantForAccessibility="no"
+        android:clipToOutline="true"
         app:srcCompat="@drawable/avatar_alt"
         tools:ignore="ImageContrastCheck" />
 

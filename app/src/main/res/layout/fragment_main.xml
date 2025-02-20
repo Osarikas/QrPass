@@ -188,8 +188,13 @@
         <Button
             android:id="@+id/admin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Admin" />
+            android:layout_height="60dp"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="@color/primary_text_color"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:cornerRadius="16dp"
+            android:text="@string/admin_btn" />
 
     </LinearLayout>
 

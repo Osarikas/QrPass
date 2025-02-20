@@ -24,7 +24,7 @@ tools:context="ru.myitschool.work.ui.login.LoginFragment">
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="104dp"
+        android:layout_marginBottom="80dp"
         android:layout_gravity="center"
         android:layout_marginTop="80dp"
         android:src="@drawable/logo_login"
@@ -45,7 +45,7 @@ tools:context="ru.myitschool.work.ui.login.LoginFragment">
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/guideline_left"
         app:layout_constraintRight_toRightOf="@id/guideline_right"
-        app:layout_constraintVertical_bias="0.4">
+        app:layout_constraintVertical_bias="0.3">
 
         <TextView
             android:id="@+id/login_title"
