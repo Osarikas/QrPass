@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_marginBottom="24dp"
+    android:paddingHorizontal="12dp">
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="start"
+        android:background="@android:color/transparent"
+        android:importantForAccessibility="no"
+        app:srcCompat="@drawable/avatar_alt"
+        tools:ignore="ImageContrastCheck" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/visit_reader_id"
+            style="@style/font_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:textSize="12sp"
+            android:singleLine="true"
+            tools:text="Артемий ФИО"/>
+
+        <TextView
+            android:id="@+id/уь_direction"
+            style="@style/secondary_text_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:singleLine="true"
+            tools:text="Вход"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/block_btn"
+        android:layout_width="116dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/accent_color"
+        android:text="@string/block_btn"
+        android:textAllCaps="false"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/white"
+        android:textSize="8sp"
+        android:singleLine="true"
+        app:cornerRadius="16dp"
+        tools:ignore="SmallSp" />
+
+</LinearLayout>

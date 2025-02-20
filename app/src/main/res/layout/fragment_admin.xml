@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_color"
-    tools:context=".admin">
+    tools:context=".ui.admin.AdminFragment">
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -59,82 +59,28 @@
 
     </LinearLayout>
 
-
     <LinearLayout
+        android:id="@+id/block_employee"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/history_corner_radius"
+        android:paddingTop="16dp"
+        android:paddingHorizontal="20dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintTop_toBottomOf="@+id/block_header"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_left"
+        app:layout_constraintRight_toLeftOf="@+id/guideline_right">
 
-        <TextView
-            android:id="@+id/visit_date"
-            style="@style/secondary_text_color"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|start"
-            android:layout_marginBottom="16dp"
-            tools:text="18 февраля" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/visit_type"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="start"
-                android:importantForAccessibility="no"
-                app:srcCompat="@drawable/logo_visit_card" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/visit_reader_id"
-                        style="@style/font_medium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:singleLine="true"
-                        tools:text="Главный вход" />
-
-                    <TextView
-                        android:id="@+id/visit_time"
-                        style="@style/font_medium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:gravity="end"
-                        android:singleLine="true"
-                        tools:text="8:00" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/visit_direction"
-                    style="@style/secondary_text_color"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    tools:text="Вход" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_employee" />
 
     </LinearLayout>
 
