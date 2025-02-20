@@ -11,7 +11,6 @@ import androidx.fragment.app.viewModels
 import ru.myitschool.work.R
 import ru.myitschool.work.databinding.FragmentAdminBinding
 import ru.myitschool.work.entities.EmployeeEntity
-import ru.myitschool.work.ui.login.LoginViewModel
 import ru.myitschool.work.utils.collectWithLifecycle
 
 class AdminFragment : Fragment(R.layout.fragment_admin) {

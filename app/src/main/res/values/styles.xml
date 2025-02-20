@@ -16,6 +16,13 @@
         <item name="android:fontFamily">@font/montserrat_medium</item>
     </style>
 
+    <style name="white_color">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="white_text_color" parent="white_color">
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
 
     <style name="secondary_text_color">
         <item name="android:textColor">@color/secondary_text_color</item>

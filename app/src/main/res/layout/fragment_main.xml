@@ -45,7 +45,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/main_error"
                 android:textAlignment="center"
-                android:textColor="@color/red"
+                android:textColor="@color/error_color"
                 android:textSize="20sp"
                 android:visibility="gone" />
         </LinearLayout>
@@ -54,6 +54,7 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/accent_color"
             android:visibility="gone"
             tools:visibility="gone" />
     </LinearLayout>
@@ -81,7 +82,7 @@
 
             <Button
                 android:id="@+id/refresh"
-                style="@style/theme_text_color"
+                style="@style/white_text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -97,7 +98,7 @@
 
             <Button
                 android:id="@+id/logout"
-                style="@style/theme_text_color"
+                style="@style/white_text_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -122,11 +123,11 @@
 
         <TextView
             android:id="@+id/fullname"
+            style="@style/white_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="68dp"
             android:fontFamily="@font/montserrat_bold"
-            android:textColor="@color/theme_color"
             android:textAlignment="center"
             android:textSize="20sp"
             tools:text="@tools:sample/full_names" />
@@ -171,7 +172,7 @@
 
         <Button
             android:id="@+id/scan"
-            style="@style/theme_text_color"
+            style="@style/white_text_color"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="28dp"
