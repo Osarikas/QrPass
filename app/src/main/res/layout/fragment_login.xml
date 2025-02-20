@@ -6,31 +6,50 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="ru.myitschool.work.ui.login.LoginFragment">
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="342dp"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="">
+        app:layout_constraintGuide_begin="16dp"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp"/>
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/logo_login"
-            android:importantForAccessibility="no"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="104dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="104dp"
+        android:src="@drawable/logo_login"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constrainedWidth="true"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/guideline_left"
+        app:layout_constraintRight_toRightOf="@id/guideline_right">
 
         <TextView
             android:id="@+id/login_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="36dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/login_title"
             android:textAlignment="center"
@@ -41,8 +60,8 @@ tools:context="ru.myitschool.work.ui.login.LoginFragment">
             android:id="@+id/username"
             style="@style/login_input"
             android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="16dp"
             android:autofillHints="username"
             android:background="@drawable/input_corner_radius"
             android:textSize="16sp"
@@ -53,8 +72,8 @@ tools:context="ru.myitschool.work.ui.login.LoginFragment">
             android:id="@+id/password"
             style="@style/login_input"
             android:layout_width="match_parent"
-            android:layout_height="61dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="40dp"
             android:autofillHints="password"
             android:background="@drawable/input_corner_radius"
             android:textSize="16sp"
@@ -64,10 +83,8 @@ tools:context="ru.myitschool.work.ui.login.LoginFragment">
         <Button
             android:id="@+id/loginBtn"
             style="@style/secondary_text_color"
-            android:layout_width="312dp"
-            android:layout_height="68dp"
-            android:layout_marginStart="10sp"
-            android:layout_marginEnd="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:backgroundTint="@color/bg_color"
             android:enabled="false"
             android:textAllCaps="false"
