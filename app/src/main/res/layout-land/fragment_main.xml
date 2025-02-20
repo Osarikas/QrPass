@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp"/>
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.238">
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="vertical"
+            android:visibility="visible"
+            tools:visibility="visible">
+            <TextView
+                android:id="@+id/error"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/main_error"
+                android:textAlignment="center"
+                android:textColor="@color/error_color"
+                android:textSize="20sp"
+                android:visibility="gone" />
+        </LinearLayout>
+        <ProgressBar
+            android:id="@+id/loading"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/accent_color"
+            android:visibility="gone"
+            tools:visibility="gone" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/block_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/header_corner_radius"
+        android:paddingTop="30dp"
+        android:paddingHorizontal="16dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/block_history"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/refresh"
+                style="@style/white_text_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:text="@string/refresh_btn" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/logout"
+                style="@style/white_text_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                android:text="@string/logout_btn" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/photo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginVertical="24dp"
+            android:background="@drawable/avatar_oval"
+            android:contentDescription="@string/app_name"
+            android:clipToOutline="true"
+            app:srcCompat="@drawable/avatar"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/fullname"
+            style="@style/white_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="68dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            tools:text="@tools:sample/full_names" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/block_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="-44dp"
+        android:background="@drawable/main_corner_radius"
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="20dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintTop_toBottomOf="@id/block_header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/guideline_left"
+        app:layout_constraintRight_toLeftOf="@id/block_history">
+
+        <TextView
+            android:id="@+id/position"
+            style="@style/font_medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            tools:text="Разработчик" />
+
+        <TextView
+            android:id="@+id/lastEntry"
+            style="@style/secondary_text_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:singleLine="true"
+            tools:text="последний вход в 08:31 • 2024-02-31" />
+
+        <Button
+            android:id="@+id/scan"
+            style="@style/white_text_color"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="28dp"
+            android:backgroundTint="@color/accent_color"
+            android:text="@string/scan_btn"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/logo_scan"
+            app:iconSize="32dp"
+            app:iconTint="@color/white" />
+
+        <Button
+            android:id="@+id/admin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="@color/primary_text_color"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            app:cornerRadius="16dp"
+            android:text="@string/admin_btn" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/block_history"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/history_corner_radius"
+        android:paddingTop="16dp"
+        android:paddingHorizontal="20dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintLeft_toRightOf="@+id/block_header"
+        app:layout_constraintRight_toLeftOf="@+id/guideline_right">
+
+        <TextView
+            android:id="@+id/history_title"
+            style="@style/font_medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/history_title"
+            android:textSize="16sp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_visit"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
