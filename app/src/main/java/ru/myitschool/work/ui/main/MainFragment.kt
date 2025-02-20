@@ -148,6 +148,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                         binding.scan.setTextColor(ContextCompat.getColor(requireContext(), R.color.secondary_text_color))
                     }
                 }
+                if(employeeEntity.authority == "EMPLOYEE"){
+                    binding.admin.visibility = View.GONE
+                }else{
+                    binding.admin.visibility = View.VISIBLE
+                }
 
             }
 

@@ -21,7 +21,7 @@
     <string name="block_btn">Block</string>
     <string name="unblock_btn">Unblock</string>
     <string name="starter_tiser">Welcome to</string>
-    <string name="starter_tiser_accent">S company Pass</string>
+    <string name="starter_tiser_accent">S Company Pass</string>
     <string name="description">View visits and an electronic pass in one application</string>
     <string name="admin_unauthorized">Вы не авторизованы</string>
     <string name="admin_forbidden">Нет доступа</string>

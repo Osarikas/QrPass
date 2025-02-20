@@ -12,7 +12,6 @@ import com.squareup.picasso.Picasso
 import ru.myitschool.work.R
 import ru.myitschool.work.databinding.FragmentAdminBinding
 import ru.myitschool.work.entities.EmployeeEntity
-import ru.myitschool.work.ui.login.LoginViewModel
 import ru.myitschool.work.utils.buttonRecolor
 import ru.myitschool.work.utils.collectWithLifecycle
 
@@ -122,6 +121,7 @@ class AdminFragment : Fragment(R.layout.fragment_admin) {
         binding.position.text = user.position
         btnState(user.qrEnabled)
         Picasso.get().load(user.photoUrl).into(binding.avatar)
+
     }
 
 }
