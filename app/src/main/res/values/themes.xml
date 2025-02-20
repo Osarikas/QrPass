@@ -4,5 +4,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        
+        <item name="android:windowSplashScreenBackground">@color/accent_color</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/logo_white</item>
     </style>
 </resources>
