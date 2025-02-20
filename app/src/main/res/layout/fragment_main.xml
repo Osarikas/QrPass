@@ -150,12 +150,6 @@
         app:layout_constraintLeft_toRightOf="@+id/guideline_left"
         app:layout_constraintRight_toLeftOf="@+id/guideline_right">
 
-        <Button
-            android:id="@+id/admin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Admin" />
-
         <TextView
             android:id="@+id/position"
             style="@style/font_medium"
@@ -183,11 +177,19 @@
             android:layout_height="60dp"
             android:layout_marginTop="28dp"
             android:backgroundTint="@color/accent_color"
-            app:icon="@drawable/logo_scan"
-            app:cornerRadius="16dp"
+            android:text="@string/scan_btn"
             android:textAllCaps="false"
             android:textSize="20sp"
-            android:text="@string/scan_btn" />
+            app:cornerRadius="16dp"
+            app:icon="@drawable/logo_scan"
+            app:iconSize="32dp"
+            app:iconTint="@color/white" />
+
+        <Button
+            android:id="@+id/admin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Admin" />
 
     </LinearLayout>
 

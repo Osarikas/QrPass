@@ -21,6 +21,7 @@ class AdminFragment : Fragment(R.layout.fragment_admin) {
     private var _binding: FragmentAdminBinding? = null
     private val binding get() = _binding!!
     private val viewModel: AdminViewModel by viewModels{ AdminViewModel.Factory }
+    private var currentBtnState: Boolean = false
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = FragmentAdminBinding.bind(view)
         binding.searchBtn.setOnClickListener {
@@ -97,15 +98,17 @@ class AdminFragment : Fragment(R.layout.fragment_admin) {
                 AdminViewModel.BlockState.Success -> {
                     binding.error.visibility = View.GONE
                     binding.userInfo.visibility = View.VISIBLE
+                    currentBtnState = !currentBtnState
+                    btnState(currentBtnState)
+
                 }
             }
         }
 
     }
-    private fun showUserData(user: EmployeeEntity){
-        binding.userName.text = user.name
-        binding.position.text = user.position
-        if(user.qrEnabled){
+    private fun btnState(bool : Boolean){
+        currentBtnState = bool
+        if(bool){
             binding.blockBtn.text = ContextCompat.getString(requireContext(), R.string.block_btn)
             buttonRecolor(requireContext(), binding.blockBtn, R.color.accent_color, R.color.white )
         }
@@ -113,6 +116,11 @@ class AdminFragment : Fragment(R.layout.fragment_admin) {
             binding.blockBtn.text = ContextCompat.getString(requireContext(), R.string.unblock_btn)
             buttonRecolor(requireContext(), binding.blockBtn, R.color.bg_color, R.color.secondary_text_color )
         }
+    }
+    private fun showUserData(user: EmployeeEntity){
+        binding.userName.text = user.name
+        binding.position.text = user.position
+        btnState(user.qrEnabled)
         Picasso.get().load(user.photoUrl).into(binding.avatar)
     }
 

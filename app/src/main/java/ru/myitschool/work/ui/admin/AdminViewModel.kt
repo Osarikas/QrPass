@@ -65,7 +65,6 @@ class AdminViewModel(
                 }
             )
         }
-        searchUser(login)
     }
     companion object {
         @Suppress("UNCHECKED_CAST")

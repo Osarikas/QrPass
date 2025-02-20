@@ -1,10 +1,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/main"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context="ru.myitschool.work.ui.login.LoginFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ru.myitschool.work.ui.login.LoginFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left"
@@ -101,7 +101,7 @@ tools:context="ru.myitschool.work.ui.login.LoginFragment">
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/login_error"
             android:textAlignment="center"
-            android:textColor="@color/red"
+            android:textColor="@color/error_color"
             android:textSize="20sp"
             android:visibility="gone"
             tools:visibility="gone" />

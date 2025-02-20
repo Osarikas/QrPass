@@ -27,6 +27,9 @@ class ScannerStateNetworkDataSource(
                     basicAuth(username, password)
                 }
             }
+            if(result.status == HttpStatusCode.PreconditionFailed){
+                error("Нельзя блокировать вход администратору")
+            }
             if (result.status != HttpStatusCode.OK) {
                 error("Status ${result.status}")
             }
