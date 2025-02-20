@@ -1,9 +1,11 @@
 package ru.myitschool.work.ui.login
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -30,8 +32,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val username = binding.username.text
                 val password = binding.password.text
-                binding.loginBtn.isEnabled = username.length >= 3 && !username[0].isDigit() && username.matches(Regex("^[a-zA-Z0-9]*$")) &&
+                val isEnabled = username.length >= 3 && !username[0].isDigit() && username.matches(Regex("^[a-zA-Z0-9]*$")) &&
                         password.length >= 6
+                binding.loginBtn.isEnabled = isEnabled
+                if(isEnabled){
+                    binding.loginBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.accent_color))
+                }
+                else{
+                    binding.loginBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.bg_color))
+                }
 
             }
         }
