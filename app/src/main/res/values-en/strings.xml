@@ -20,4 +20,7 @@
     <string name="search_hint">Enter the employee\'s username</string>
     <string name="block_btn">Block</string>
     <string name="unblock_btn">Unblock</string>
+    <string name="admin_unauthorized">Вы не авторизованы</string>
+    <string name="admin_forbidden">Нет доступа</string>
+    <string name="not_found">404\nEmployee not found</string>
 </resources>

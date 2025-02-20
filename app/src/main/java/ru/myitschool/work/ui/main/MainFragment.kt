@@ -39,9 +39,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         viewModel.getUserData()
         viewModel.getLastEntryDate()
-        findNavController().navigate(R.id.admin)
         binding.logout.setOnClickListener { logout() }
         binding.scan.setOnClickListener { onScanClick() }
+        binding.admin.setOnClickListener { findNavController().navigate(R.id.admin) }
         viewModel.userState.collectWhenStarted(this) { state ->
             when (state) {
                 is UserState.Error -> {

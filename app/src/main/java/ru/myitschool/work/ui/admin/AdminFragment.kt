@@ -8,10 +8,14 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.squareup.picasso.Picasso
 import ru.myitschool.work.R
 import ru.myitschool.work.databinding.FragmentAdminBinding
 import ru.myitschool.work.entities.EmployeeEntity
+import ru.myitschool.work.ui.login.LoginViewModel
+import ru.myitschool.work.utils.buttonRecolor
 import ru.myitschool.work.utils.collectWithLifecycle
+
 
 class AdminFragment : Fragment(R.layout.fragment_admin) {
     private var _binding: FragmentAdminBinding? = null
@@ -37,6 +41,7 @@ class AdminFragment : Fragment(R.layout.fragment_admin) {
                 val isEnabled =
                     search.length >= 3 && !search[0].isDigit() && search.matches(Regex("^[a-zA-Z0-9]*$"))
                 binding.searchBtn.isEnabled = isEnabled
+                @Suppress("DEPRECATION")
                 if (isEnabled) {
                     binding.searchBtn.setBackgroundColor(resources.getColor(R.color.accent_color))
                     binding.searchBtn.imageTintList = ColorStateList.valueOf(
@@ -52,31 +57,63 @@ class AdminFragment : Fragment(R.layout.fragment_admin) {
                             R.color.secondary_text_color
                         ))
                 }
-
-
             }
         }
+
         binding.search.addTextChangedListener(textWatcher)
         viewModel.infoState.collectWithLifecycle(this){ state ->
             when(state){
                 is AdminViewModel.SearchState.Error -> {
                     binding.error.visibility = View.VISIBLE
                     binding.error.text = state.message
+                    binding.userInfo.visibility = View.GONE
 
                 }
                 AdminViewModel.SearchState.Loading -> {
                     binding.error.visibility = View.GONE
-                    binding
+                    binding.userInfo.visibility = View.GONE
                 }
                 is AdminViewModel.SearchState.Success -> {
                     binding.error.visibility = View.GONE
+                    binding.userInfo.visibility = View.VISIBLE
                     showUserData(state.data)
                 }
             }
         }
+        binding.blockBtn.setOnClickListener {
+            viewModel.changeState(binding.search.text.toString())
+
+        }
+        viewModel.blockState.collectWithLifecycle(this){ state ->
+            when(state){
+                is AdminViewModel.BlockState.Error -> {
+                    binding.error.visibility = View.VISIBLE
+                    binding.error.text = state.message
+                }
+                AdminViewModel.BlockState.Loading -> {
+                    binding.error.visibility = View.GONE
+                    binding.userInfo.visibility = View.GONE
+                }
+                AdminViewModel.BlockState.Success -> {
+                    binding.error.visibility = View.GONE
+                    binding.userInfo.visibility = View.VISIBLE
+                }
+            }
+        }
+
     }
     private fun showUserData(user: EmployeeEntity){
         binding.userName.text = user.name
         binding.position.text = user.position
+        if(user.qrEnabled){
+            binding.blockBtn.text = ContextCompat.getString(requireContext(), R.string.block_btn)
+            buttonRecolor(requireContext(), binding.blockBtn, R.color.accent_color, R.color.white )
+        }
+        else{
+            binding.blockBtn.text = ContextCompat.getString(requireContext(), R.string.unblock_btn)
+            buttonRecolor(requireContext(), binding.blockBtn, R.color.bg_color, R.color.secondary_text_color )
+        }
+        Picasso.get().load(user.photoUrl).into(binding.avatar)
     }
+
 }

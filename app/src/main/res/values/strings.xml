@@ -22,6 +22,9 @@
     <string name="search_hint">Введите логин сотрудника</string>
     <string name="block_btn">Заблокировать</string>
     <string name="unblock_btn">Разблокировать</string>
+    <string name="admin_unauthorized">Вы не авторизованы</string>
+    <string name="admin_forbidden">Нет доступа</string>
+    <string name="not_found">404\nСотрудник не найден</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 

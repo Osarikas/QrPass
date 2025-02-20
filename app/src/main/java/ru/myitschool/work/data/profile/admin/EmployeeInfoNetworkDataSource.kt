@@ -39,15 +39,6 @@ class EmployeeInfoNetworkDataSource(
                 HttpStatusCode.NotFound -> error(context.getString(R.string.not_found))
                 HttpStatusCode.OK -> result.body()
             }
-            if(result.status == HttpStatusCode.Unauthorized){
-                error(context.getString(R.string.admin_unauthorized))
-            }
-            if (result.status != HttpStatusCode.OK) {
-                println(result.status)
-                error("Status ${result.status}")
-
-            }
-
             println(result.bodyAsText())
             result.body()
         }

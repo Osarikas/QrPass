@@ -18,11 +18,11 @@ class ScannerStateNetworkDataSource(
 ) {
     private val client = NetworkModule.httpClient
     private val userDataStoreManager = UserDataStoreManager.getInstance(context)
-    suspend fun setScannerState(state: String, login: String):Result<Unit> = withContext(Dispatchers.IO){
+    suspend fun setScannerState(login: String):Result<Unit> = withContext(Dispatchers.IO){
         runCatching {
             val username = userDataStoreManager.usernameFlow.first()
             val password = userDataStoreManager.passwordFlow.first()
-            val result = client.patch("${Constants.SERVER_ADDRESS}/api/employee/$login/$state"){
+            val result = client.patch("${Constants.SERVER_ADDRESS}/api/employee/$login/change_state"){
                 headers{
                     basicAuth(username, password)
                 }
